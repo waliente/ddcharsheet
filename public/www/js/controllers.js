@@ -26,31 +26,27 @@ angular.module('app.controllers', [])
 
     $scope.login = function () {
 
-      if ($scope.user.email && $scope.user.password) {
+      $ionicLoading.show();
 
-        $ionicLoading.show();
+      $http.post($appConfig.API_URL + '/users/login', $scope.user)
+        .then(function (result) {
 
-        $http.post($appConfig.API_URL + '/users/login', $scope.user)
-          .then(function (result) {
+          if (result.data.success) {
 
-            if (result.data.success) {
+            console.log(result);
 
-              console.log(result);
-
-              $localStorage.set("user", result.data);
-              $ionicLoading.hide();
-              $window.location.href = "index.html"
-
-            }
-
-          })
-          .catch(function (error) {
-            console.log(error);
+            $localStorage.set("user", result.data);
             $ionicLoading.hide();
-            $scope.error_message = "Incorrect username or password"
-          });
+            $window.location.href = "index.html"
 
-      }
+          }
+
+        })
+        .catch(function (error) {
+          console.log(error);
+          $ionicLoading.hide();
+          $scope.error_message = "Incorrect username or password"
+        });
 
     };
 
