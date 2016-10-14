@@ -26,27 +26,31 @@ angular.module('app.controllers', [])
 
     $scope.login = function () {
 
-      $ionicLoading.show();
+      if ($scope.user.email && $scope.user.password) {
 
-      $http.post($appConfig.API_URL + '/users/login', $scope.user)
-        .then(function (result) {
+        $ionicLoading.show();
 
-          if (result.data.success) {
+        $http.post($appConfig.API_URL + '/users/login', $scope.user)
+          .then(function (result) {
 
-            console.log(result);
+            if (result.data.success) {
 
-            $localStorage.set("user", result.data);
+              console.log(result);
+
+              $localStorage.set("user", result.data);
+              $ionicLoading.hide();
+              $window.location.href = "index.html"
+
+            }
+
+          })
+          .catch(function (error) {
+            console.log(error);
             $ionicLoading.hide();
-            $window.location.href = "index.html"
+            $scope.error_message = "Incorrect username or password"
+          });
 
-          }
-
-        })
-        .catch(function (error) {
-          console.log(error);
-          $ionicLoading.hide();
-          $scope.error_message = "Incorrect username or password"
-        });
+      }
 
     };
 
@@ -88,7 +92,7 @@ angular.module('app.controllers', [])
 
   // DASHBOARD
 
-  .controller('DashboardCtrl', function ($scope, $ionicModal, $state, $http, $window, $rootScope, $localStorage) {
+  .controller('DashboardCtrl', function ($scope, $ionicModal, $state, $http, $window, $rootScope, $localStorage, $window) {
 
     // MODAL
     $ionicModal.fromTemplateUrl('templates/add-new-modal.html', {
@@ -136,7 +140,7 @@ angular.module('app.controllers', [])
 
       $localStorage.clear();
       $rootScope.user = null;
-      $state.go("login");
+      $window.location.href = "index.html"
 
     };
 
