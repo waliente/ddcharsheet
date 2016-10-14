@@ -1,0 +1,741 @@
+<ion-view view-title="Character Detail">
+
+  <ion-nav-buttons side="right">
+    <button class="button button-bar button-positive" ng-if="activeEdit" ng-click="saveEdit(characterId)"><i class="ion-checkmark"></i>&nbsp;Save</button>
+    <button class="button button-bar button-stable" ng-if="activeEdit" ng-click="closeEdit()"><i class="ion-close"></i>&nbsp;Close</button>
+    <button class="button button-bar button-stable button-icon" ng-click="activateEdit()" ng-if="!activeEdit" style="color:#fff"><i class="ion-compose"></i>&nbsp;Edit</button>
+  </ion-nav-buttons>
+
+  <ion-pane>
+
+    <ion-content>
+
+      <img src="img/header2.png" class="full-image" alt="">
+
+      <!-- general info -->
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title" ng-if="!activeEdit">
+            <div>
+              <img src="img/icon.jpg" alt="">
+            </div>
+            <span ng-if="!character.name">&nbsp;</span>
+            {{character.name}}
+          </h4>
+          <label class="item item-input item-stacked-label" ng-if="activeEdit">
+            <span class="input-label">Character Name</span>
+            <input type="text" placeholder="Character Name" ng-model="character.name">
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-50">
+          <span ng-if="!activeEdit"><b>Race:</b> {{character.race}}</span>
+          <label class="item item-input item-stacked-label" ng-if="activeEdit">
+            <span class="input-label">Race</span>
+            <input type="text" placeholder="Race" ng-model="character.race">
+          </label>
+        </div>
+        <div class="col col-50" ng-class="{'text-right': !activeEdit}">
+          <span ng-if="!activeEdit"><b>Lvl:</b> {{character.level}}</span>
+          <label class="item item-input item-stacked-label" ng-if="activeEdit">
+            <span class="input-label">Level</span>
+            <input type="number" placeholder="Level" ng-model="character.level">
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-50">
+          <span ng-if="!activeEdit"><b>Class:</b> {{character.class}}</span>
+          <label class="item item-input item-stacked-label" ng-if="activeEdit">
+            <span class="input-label">Class</span>
+            <input type="text" placeholder="Class" ng-model="character.class">
+          </label>
+        </div>
+        <div class="col col-50" ng-class="{'text-right': !activeEdit}">
+          <span ng-if="!activeEdit"><b>Deity:</b> {{character.deity}}</span>
+          <label class="item item-input item-stacked-label" ng-if="activeEdit">
+            <span class="input-label">Deity</span>
+            <input type="text" placeholder="Deity" ng-model="character.deity">
+          </label>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- skills -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/dice.png" alt="">
+            </div>
+            SKILLS
+          </h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-50" ng-class="{'text-center': !activeEdit}">
+          <h3 class="title hp" ng-if="!activeEdit">HP {{character.hp}}</h3>
+          <label class="item item-input item-stacked-label" ng-if="activeEdit">
+            <span class="input-label">HP</span>
+            <input type="number" placeholder="Hit Points" ng-model="character.hp">
+          </label>
+        </div>
+        <div class="col col-50" ng-class="{'text-center': !activeEdit}">
+          <h3 class="title dice" ng-if="!activeEdit"><span style="font-size:16px;">Hit Dice</span> {{character.hit_dice}}</h3>
+          <label class="item item-input item-stacked-label" ng-if="activeEdit">
+            <span class="input-label">Hit Dice</span>
+            <input type="text" placeholder="example: 1d10" ng-model="character.hit_dice">
+          </label>
+        </div>
+      </div>
+
+      <div class="row text-center box-container">
+        <div class="col-33">
+          <h4 class="title">Iniziative</h4>
+          <p style="font-size:20px;" ng-if="!activeEdit"><b>{{character.iniziative}}</b></p>
+          <label class="item item-input" ng-if="activeEdit" style="width:65px;margin:0 auto;padding-left:5px;">
+            <input type="number" placeholder="" ng-model="character.iniziative" style="padding-right:5px;text-align:center;">
+          </label>
+        </div>
+        <div class="col-33">
+          <h4 class="title">Armor Class</h4>
+          <p style="font-size:20px;" ng-if="!activeEdit"><b>{{character.armor}}</b></p>
+          <label class="item item-input" ng-if="activeEdit" style="width:65px;margin:0 auto;padding-left:5px;">
+            <input type="number" placeholder="" ng-model="character.armor" style="padding-right:5px;text-align:center;">
+          </label>
+        </div>
+        <div class="col-33">
+          <h4 class="title">Speed</h4>
+          <p style="font-size:20px;" ng-if="!activeEdit"><b>{{character.speed}}</b></p>
+          <label class="item item-input" ng-if="activeEdit" style="width:65px;margin:0 auto;padding-left:5px;">
+            <input type="number" placeholder="" ng-model="character.speed" style="padding-right:5px;text-align:center;">
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-50">
+          <div class="skill-container" ng-class="{'edit': activeEdit}">
+            <h3 class="title skill-title">STRENGTH</h3>
+            <h2 class="text-center" ng-if="!activeEdit">{{character.strength.value}}</h2>
+            <label class="item item-input" ng-if="activeEdit" style="width:65px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="STR" ng-model="character.strength.value" style="padding-right:5px;text-align:center;">
+            </label>
+            <ion-checkbox ng-model="character.strength.has_save" style="border:0;width:120px;margin:0 auto;padding-top:8px;padding-bottom:8px;" ng-if="activeEdit">Save</ion-checkbox>
+            <label class="item item-input" ng-if="activeEdit" style="width:105px;height:35px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="Save Bonus" ng-model="character.strength.save_mod" style="padding-right:5px;text-align:center;">
+            </label>
+            <p class="text-center">
+              <span class="label dark" ng-if="character.strength.value">Mod {{character.strength.modifier}}</span>
+              <span class="label positive" ng-if="character.strength.has_save">Save <span ng-if="character.strength.save_mod > 0">+</span>{{character.strength.save_mod}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="skill-container" ng-class="{'edit': activeEdit}">
+            <h3 class="title skill-title">DEXTERITY</h3>
+            <h2 class="text-center" ng-if="!activeEdit">{{character.dexterity.value}}</h2>
+            <label class="item item-input" ng-if="activeEdit" style="width:65px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="DEX" ng-model="character.dexterity.value" style="padding-right:5px;text-align:center;">
+            </label>
+            <ion-checkbox ng-model="character.dexterity.has_save" style="border:0;width:120px;margin:0 auto;padding-top:8px;padding-bottom:8px;" ng-if="activeEdit">Save</ion-checkbox>
+            <label class="item item-input" ng-if="activeEdit" style="width:105px;height:35px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="Save Bonus" ng-model="character.dexterity.save_mod" style="padding-right:5px;text-align:center;">
+            </label>
+            <p class="text-center">
+              <span class="label dark" ng-if="character.dexterity.value">Mod {{character.dexterity.modifier}}</span>
+              <span class="label positive" ng-if="character.dexterity.has_save">Save <span ng-if="character.dexterity.save_mod > 0">+</span>{{character.dexterity.save_mod}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-50">
+          <div class="skill-container" ng-class="{'edit': activeEdit}">
+            <h3 class="title skill-title">CONSTITUTION</h3>
+            <h2 class="text-center" ng-if="!activeEdit">{{character.constitution.value}}</h2>
+            <label class="item item-input" ng-if="activeEdit" style="width:65px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="COS" ng-model="character.constitution.value" style="padding-right:5px;text-align:center;">
+            </label>
+            <ion-checkbox ng-model="character.constitution.has_save" style="border:0;width:120px;margin:0 auto;padding-top:8px;padding-bottom:8px;" ng-if="activeEdit">Save</ion-checkbox>
+            <label class="item item-input" ng-if="activeEdit" style="width:105px;height:35px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="Save Bonus" ng-model="character.constitution.save_mod" style="padding-right:5px;text-align:center;">
+            </label>
+            <p class="text-center">
+              <span class="label dark" ng-if="character.constitution.value">Mod {{character.constitution.modifier}}</span>
+              <span class="label positive" ng-if="character.constitution.has_save">Save <span ng-if="character.constitution.save_mod > 0">+</span>{{character.constitution.save_mod}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="skill-container" ng-class="{'edit': activeEdit}">
+            <h3 class="title skill-title">INTELLIGENCE</h3>
+            <h2 class="text-center" ng-if="!activeEdit">{{character.intelligence.value}}</h2>
+            <label class="item item-input" ng-if="activeEdit" style="width:65px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="INT" ng-model="character.intelligence.value" style="padding-right:5px;text-align:center;">
+            </label>
+            <ion-checkbox ng-model="character.intelligence.has_save" style="border:0;width:120px;margin:0 auto;padding-top:8px;padding-bottom:8px;" ng-if="activeEdit">Save</ion-checkbox>
+            <label class="item item-input" ng-if="activeEdit" style="width:105px;height:35px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="Save Bonus" ng-model="character.intelligence.save_mod" style="padding-right:5px;text-align:center;">
+            </label>
+            <p class="text-center">
+              <span class="label dark" ng-if="character.intelligence.value">Mod {{character.intelligence.modifier}}</span>
+              <span class="label positive" ng-if="character.intelligence.has_save">Save <span ng-if="character.intelligence.save_mod > 0">+</span>{{character.intelligence.save_mod}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-50">
+          <div class="skill-container" ng-class="{'edit': activeEdit}">
+            <h3 class="title skill-title">WISDOM</h3>
+            <h2 class="text-center" ng-if="!activeEdit">{{character.wisdom.value}}</h2>
+            <label class="item item-input" ng-if="activeEdit" style="width:65px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="WIS" ng-model="character.wisdom.value" style="padding-right:5px;text-align:center;">
+            </label>
+            <ion-checkbox ng-model="character.wisdom.has_save" style="border:0;width:120px;margin:0 auto;padding-top:8px;padding-bottom:8px;" ng-if="activeEdit">Save</ion-checkbox>
+            <label class="item item-input" ng-if="activeEdit" style="width:105px;height:35px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="Save Bonus" ng-model="character.wisdom.save_mod" style="padding-right:5px;text-align:center;">
+            </label>
+            <p class="text-center">
+              <span class="label dark" ng-if="character.wisdom.value">Mod {{character.wisdom.modifier}}</span>
+              <span class="label positive" ng-if="character.wisdom.has_save">Save <span ng-if="character.wisdom.save_mod > 0">+</span>{{character.wisdom.save_mod}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="skill-container" ng-class="{'edit': activeEdit}">
+            <h3 class="title skill-title">CHARISMA</h3>
+            <h2 class="text-center" ng-if="!activeEdit">{{character.charisma.value}}</h2>
+            <label class="item item-input" ng-if="activeEdit" style="width:65px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="CHA" ng-model="character.charisma.value" style="padding-right:5px;text-align:center;">
+            </label>
+            <ion-checkbox ng-model="character.charisma.has_save" style="border:0;width:120px;margin:0 auto;padding-top:8px;padding-bottom:8px;" ng-if="activeEdit">Save</ion-checkbox>
+            <label class="item item-input" ng-if="activeEdit" style="width:105px;height:35px;margin:0 auto 5px auto;padding-left:5px;">
+              <input type="number" placeholder="Save Bonus" ng-model="character.charisma.save_mod" style="padding-right:5px;text-align:center;">
+            </label>
+            <p class="text-center">
+              <span class="label dark" ng-if="character.charisma.value">Mod {{character.charisma.modifier}}</span>
+              <span class="label positive" ng-if="character.charisma.has_save">Save <span ng-if="character.charisma.save_mod > 0">+</span>{{character.charisma.save_mod}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row proficiency-inspirantion">
+        <div class="col col-100 text-center">
+          <div class="left" ng-if="!activeEdit">
+            Inspiration
+          </div>
+          <div class="right label dark" ng-if="!activeEdit">
+            <span ng-if="character.inspiration == true">Yes</span>
+            <span ng-if="character.inspiration == false || character.inspiration == null">No</span>
+          </div>
+          <ion-checkbox ng-model="character.inspiration" ng-if="activeEdit">Inspiration</ion-checkbox>
+        </div>
+      </div>
+      <div class="row proficiency-inspirantion">
+        <div class="col col-100 text-center">
+          <div class="left" ng-if="!activeEdit">
+            Proficiency
+          </div>
+          <div class="right label dark" ng-if="!activeEdit">
+            <span ng-if="!character.proficiency">&nbsp;</span><span ng-if="character.proficiency">+</span>{{character.proficiency}}
+          </div>
+          <label class="item item-input item-stacked-label" ng-if="activeEdit">
+            <span class="input-label">Proficiency</span>
+            <input type="number" placeholder="Proficiency Bonus" ng-model="character.proficiency" style="text-align: center;">
+          </label>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- abilities & saving throws -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/abilities.png" alt="">
+            </div>
+            ABILITIES
+          </h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <ion-list>
+            <ion-item ng-repeat="ability in character.abilities track by $index">
+
+              <div class="row" ng-if="activeEdit">
+                <div class="col col-75">
+                  {{ability.name}} <span class="label default">({{ability.saving}})</span>
+                  <ion-checkbox ng-model="ability.proficient" style="border:0;margin:0 auto;padding-top:8px;padding-bottom:8px;padding-left:40px;font-size:12px;">Proficient</ion-checkbox>
+                </div>
+                <div class="col col-25">
+                  <label class="item item-input" style="width:100%;height:45px;margin:0 auto 5px auto;padding-left:5px;">
+                    <input type="number" placeholder="Value" ng-model="ability.value" style="padding-right:5px;text-align:center;">
+                  </label>
+                </div>
+              </div>
+
+              <div class="row" ng-if="!activeEdit">
+                <div class="col col-55">
+                  <p>{{ability.name}} <span class="label default">({{ability.saving}})</span></p>
+                </div>
+                <div class="col col-25 text-center">
+                  <p ng-if="ability.proficient == false || !ability.proficient">{{ability.value}}</p>
+                  <p ng-if="ability.proficient == true">{{ability.value -- character.proficiency}}</p>
+                </div>
+                <div class="col col-25 text-center">
+                  <span class="label positive" ng-if="ability.proficient == true">Proficient</span>
+                </div>
+              </div>
+
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- weapons -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/weapons.png" alt="">
+            </div>
+            WEAPONS
+          </h4>
+        </div>
+      </div>
+
+      <div class="row" ng-if="activeEdit">
+        <div class="col">
+          <button class="button button-positive" ng-click="addWeapon()" ng-if="!showWeaponForm"><i class="ion-android-add-circle"></i> Add Weapon</button>
+          <button class="button button-stable" ng-click="closeWeapon()" ng-if="showWeaponForm"><i class="ion-android-close"></i> Close</button>
+          <br>
+        </div>
+      </div>
+      <div class="row" ng-if="showWeaponForm">
+        <div class="col">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Weapon Name</span>
+            <input type="text" placeholder="Weapon" ng-model="character.weapons.name" maxlength="30">
+          </label>
+        </div>
+      </div>
+      <div class="row" ng-if="showWeaponForm">
+        <div class="col col-50">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Weapon Damage</span>
+            <input type="text" placeholder="example: 1d8" ng-model="character.weapons.damage">
+          </label>
+        </div>
+        <div class="col col-50">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Weapon Hit Type</span>
+            <input type="text" placeholder="example: piercing" ng-model="character.weapons.hit_type">
+          </label>
+        </div>
+      </div>
+      <div class="row" ng-if="showWeaponForm">
+        <div class="col">
+          <ion-checkbox ng-model="character.weapons.proficient">Proficient</ion-checkbox>
+        </div>
+      </div>
+      <div class="row" ng-if="showWeaponForm">
+        <div class="col">
+          <button class="button button-positive" ng-click="saveWeapon()"><i class="ion-checkmark"></i> Add Weapon</button>
+        </div>
+      </div>
+
+      <br ng-if="showWeaponForm">
+
+      <div class="row">
+        <div class="col">
+          <ion-list>
+            <ion-item ng-repeat="weapon in character.weapons" class="item-text-wrap item-remove-animate" style="line-height:25px;">
+              <p>{{weapon.name}} &nbsp; <span class="label dark">{{weapon.damage}}<span ng-if="weapon.proficient == true"> +{{character.proficiency}}</span></span> &nbsp;
+                <span class="label default">{{weapon.hit_type}}</span></p>
+              <ion-option-button class="button-assertive" ng-click="deleteWeapon(weapon)" ng-if="activeEdit">Delete</ion-option-button>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- equipment -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/equipment.png" alt="">
+            </div>
+            EQUIPMENT
+          </h4>
+        </div>
+      </div>
+
+      <div class="row" ng-if="activeEdit">
+        <div class="col">
+          <button class="button button-positive" ng-click="addEquip()" ng-if="!showEquipForm"><i class="ion-android-add-circle"></i> Add Equip</button>
+          <button class="button button-stable" ng-click="closeEquip()" ng-if="showEquipForm"><i class="ion-android-close"></i> Close</button>
+          <br>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showEquipForm">
+        <div class="col">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Name</span>
+            <input type="text" placeholder="type here..." ng-model="character.equipment.name" maxlength="30">
+          </label>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showEquipForm">
+        <div class="col">
+          <button class="button button-positive" ng-click="saveEquip()"><i class="ion-checkmark"></i> Add Equip</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <ion-list>
+            <ion-item class="item-text-wrap item-remove-animate" ng-repeat="equip in character.equipment">
+              <p>{{equip.name}}</p>
+              <ion-option-button class="button-assertive" ng-click="deleteEquip(equip)" ng-if="activeEdit">Delete</ion-option-button>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- armor proficiencies -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/armour.png" alt="">
+            </div>
+            ARMOR PROFICIENCIES
+          </h4>
+        </div>
+      </div>
+
+      <div class="row" ng-if="activeEdit">
+        <div class="col">
+          <button class="button button-positive" ng-click="addArmor()" ng-if="!showArmorForm"><i class="ion-android-add-circle"></i> Set Armors Proficiency</button>
+          <button class="button button-stable" ng-click="closeArmor()" ng-if="showArmorForm"><i class="ion-android-close"></i> Close</button>
+          <br>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showArmorForm">
+        <div class="col">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Description</span>
+            <textarea  placeholder="example: Light Armor, Medium Armor, Shield, etc..." ng-model="character.armors_proficiency"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showArmorForm">
+        <div class="col">
+          <button class="button button-positive" ng-click="saveArmor()"><i class="ion-checkmark"></i> Save</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <p style="font-size:14px;">{{character.armors_proficiency}}</p>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- weapon proficiencies -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/weapon.png" alt="">
+            </div>
+            WEAPON PROFICIENCIES
+          </h4>
+        </div>
+      </div>
+
+      <div class="row" ng-if="activeEdit">
+        <div class="col">
+          <button class="button button-positive" ng-click="addWeaponsProficiency()" ng-if="!showWeaponsProficiencyForm"><i class="ion-android-add-circle"></i> Set Weapons Proficiency</button>
+          <button class="button button-stable" ng-click="closeWeaponsProficiency()" ng-if="showWeaponsProficiencyForm"><i class="ion-android-close"></i> Close</button>
+          <br>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showWeaponsProficiencyForm">
+        <div class="col">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Description</span>
+            <textarea  placeholder="example: Longsword, Shortsword, Longbow, etc..." ng-model="character.weapons_proficiency"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showWeaponsProficiencyForm">
+        <div class="col">
+          <button class="button button-positive" ng-click="saveWeaponsProficiency()"><i class="ion-checkmark"></i> Save</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <p style="font-size:14px;">{{character.weapons_proficiency}}</p>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- features & traits -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/features.png" alt="">
+            </div>
+            FEATURES & TRAITS
+          </h4>
+        </div>
+      </div>
+
+      <div class="row" ng-if="activeEdit">
+        <div class="col">
+          <button class="button button-positive" ng-click="addTrait()" ng-if="!showTraitForm"><i class="ion-android-add-circle"></i> Add Trait</button>
+          <button class="button button-stable" ng-click="closeTrait()" ng-if="showTraitForm"><i class="ion-android-close"></i> Close</button>
+          <br>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showTraitForm">
+        <div class="col">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Description</span>
+            <input type="text" placeholder="type here..." ng-model="character.traits.description">
+          </label>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showTraitForm">
+        <div class="col">
+          <button class="button button-positive" ng-click="saveTrait()"><i class="ion-checkmark"></i> Add Trait</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <ion-list>
+            <ion-item class="item-text-wrap item-remove-animate" ng-repeat="trait in character.traits">
+              <p>{{trait.description}}</p>
+              <ion-option-button class="button-assertive" ng-click="deleteTrait(trait)" ng-if="activeEdit">Delete</ion-option-button>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- tool proficiencies -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/tools.png" alt="">
+            </div>
+            TOOL PROFICIENCIES
+          </h4>
+        </div>
+      </div>
+
+      <div class="row" ng-if="activeEdit">
+        <div class="col">
+          <button class="button button-positive" ng-click="addToolsProficiency()" ng-if="!showToolsProficiencyForm"><i class="ion-android-add-circle"></i> Set Tools Proficiency</button>
+          <button class="button button-stable" ng-click="closeToolsProficiency()" ng-if="showToolsProficiencyForm"><i class="ion-android-close"></i> Close</button>
+          <br>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showToolsProficiencyForm">
+        <div class="col">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Description</span>
+            <textarea  placeholder="example: Herbalism Kit, Blacksmith Kit, etc..." ng-model="character.tools_proficiency"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showToolsProficiencyForm">
+        <div class="col">
+          <button class="button button-positive" ng-click="saveToolsProficiency()"><i class="ion-checkmark"></i> Save</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <p style="font-size:14px;">{{character.tools_proficiency}}</p>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- languages known -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/languages.png" alt="">
+            </div>
+            LANGUAGES KNOWN
+          </h4>
+        </div>
+      </div>
+
+      <div class="row" ng-if="activeEdit">
+        <div class="col">
+          <button class="button button-positive" ng-click="addLanguages()" ng-if="!showToolsProficiencyForm"><i class="ion-android-add-circle"></i> Set Languages Known</button>
+          <button class="button button-stable" ng-click="closeLanguages()" ng-if="showToolsProficiencyForm"><i class="ion-android-close"></i> Close</button>
+          <br>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showLanguagesForm">
+        <div class="col">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Description</span>
+            <textarea  placeholder="example: Common, Elvish, etc..." ng-model="character.languages"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showLanguagesForm">
+        <div class="col">
+          <button class="button button-positive" ng-click="saveLanguages()"><i class="ion-checkmark"></i> Save</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <p style="font-size:14px;">{{character.languages}}</p>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- spellbook -->
+
+      <div class="row">
+        <div class="col">
+          <h4 class="title custom-title">
+            <div>
+              <img src="img/spellbook.png" alt="">
+            </div>
+            SPELLBOOK
+          </h4>
+        </div>
+      </div>
+
+      <div class="row" ng-if="activeEdit">
+        <div class="col">
+          <button class="button button-positive" ng-click="addSpell()" ng-if="!showSpellForm"><i class="ion-android-add-circle"></i> Add Spell</button>
+          <button class="button button-stable" ng-click="closeSpell()" ng-if="showSpellForm"><i class="ion-android-close"></i> Close</button>
+          <br>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showSpellForm">
+        <div class="col-25">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Level</span>
+            <input type="text" placeholder="level" ng-model="character.spells.level">
+          </label>
+        </div>
+        <div class="col-75">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Spell Name</span>
+            <input type="text" placeholder="Spell Name" ng-model="character.spells.name">
+          </label>
+        </div>
+      </div>
+
+      <div class="row" ng-if="showSpellForm">
+        <div class="col">
+          <button class="button button-positive" ng-click="saveSpell()"><i class="ion-checkmark"></i> Add Spell</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <ion-list>
+            <ion-item class="item-text-wrap" style="background:#f0f0f0" ng-if="character.spells.length > 0">
+              <div class="row">
+                <div class="col-25">
+                  Lvl
+                </div>
+                <div class="col-75">
+                  Name
+                </div>
+              </div>
+            </ion-item>
+            <ion-item class="item-text-wrap item-remove-animate" ng-repeat="spell in character.spells | orderBy: 'level'">
+              <div class="row">
+                <div class="col-25">
+                  {{spell.level}}
+                </div>
+                <div class="col-75">
+                  {{spell.name}}
+                </div>
+              </div>
+              <ion-option-button class="button-assertive" ng-click="deleteSpell(spell)" ng-if="activeEdit">Delete</ion-option-button>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <br>
+
+    </ion-content>
+
+  </ion-pane>
+
+</ion-view>
+
+

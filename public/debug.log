@@ -1,0 +1,6 @@
+[1004/133352:ERROR:process_info.cc(330)] VirtualQueryEx: Accesso negato. (0x5)
+[1004/133352:ERROR:process_info.cc(547)] ReadMemoryInfo failed
+[1004/133352:ERROR:process_reader_win.cc(142)] SuspendThread: Accesso negato. (0x5)
+[1004/133352:ERROR:exception_snapshot_win.cc(87)] thread ID 14784 not found in process
+[1004/133352:WARNING:crash_report_exception_handler.cc(56)] ProcessSnapshotWin::Initialize failed
+[1004/133352:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: Tentativo di accesso a un processo in fase di chiusura.  (0xc000010a)

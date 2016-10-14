@@ -1,0 +1,24 @@
+<ion-view view-title="My Characters">
+  <ion-nav-buttons side="right">
+    <button class="button button-bar button-stable button-icon" ng-click="logout()" style="color:#fff"><i class="ion-android-exit"></i>&nbsp;Logout</button>
+    <button class="button button-bar button-stable button-icon" ng-click="openModal()" style="color:#fff"><i class="ion-android-add"></i>&nbsp;Add</button>
+  </ion-nav-buttons>
+  <ion-pane>
+    <ion-content>
+
+      <img src="img/header.png" class="full-image" alt="">
+      <br>
+      <br>
+
+      <div class="padding">
+
+        <button class="button button-positive" ng-click="openModal()"><i class="ion-android-add"></i> Add new character</button>
+
+        <characters-list></characters-list>
+
+      </div>
+
+    </ion-content>
+  </ion-pane>
+</ion-view>
+

@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Acrobatics",
+    "saving": "Dex"
+  },
+  {
+    "name": "Animal Handling",
+    "saving": "Wis"
+  },
+  {
+    "name": "Arcana",
+    "saving": "Int"
+  },
+  {
+    "name": "Athletics",
+    "saving": "Str"
+  },
+  {
+    "name": "Deception",
+    "saving": "Cha"
+  },
+  {
+    "name": "History",
+    "saving": "Int"
+  },
+  {
+    "name": "Insight",
+    "saving": "Wis"
+  },
+  {
+    "name": "Intimidation",
+    "saving": "Cha"
+  },
+  {
+    "name": "Investigation",
+    "saving": "Int"
+  },
+  {
+    "name": "Medicine",
+    "saving": "Wis"
+  },
+  {
+    "name": "Nature",
+    "saving": "Int"
+  },
+  {
+    "name": "Perception",
+    "saving": "Wis"
+  },
+  {
+    "name": "Perfomance",
+    "saving": "Cha"
+  },
+  {
+    "name": "Persuasion",
+    "saving": "Cha"
+  },
+  {
+    "name": "Religion",
+    "saving": "Int"
+  },
+  {
+    "name": "Sleight of Hand",
+    "saving": "Dex"
+  },
+  {
+    "name": "Stealth",
+    "saving": "Dex"
+  },
+  {
+    "name": "Survival",
+    "saving": "Wis"
+  }
+]

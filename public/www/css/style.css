@@ -1,0 +1,179 @@
+body {
+  font-family: 'Merriweather', serif;
+  font-size:16px;
+}
+ion-nav-bar .button .icon {
+  color:#fff;
+}
+
+.error-message {
+  color: red;
+  font-size:12px;
+}
+
+.button.disabled {
+  filter: Alpha(Opacity=30);
+  opacity: .3;
+  zoom: 1;
+  cursor: default !important;
+  pointer-events: none;
+}
+
+.bar-dark {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+}
+
+.custom-title {
+  background:#ADA193;
+  padding:5px 5px 5px 60px;
+  position: relative;
+  color:#fff;
+}
+
+.custom-title div {
+  width:50px;
+  height:50px;
+  background:#fff;
+  border:solid 2px #B12A14;
+  overflow:hidden;
+  float:left;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  border-radius:50%;
+  position:absolute;
+  top:-10px;
+  left:-5px;
+}
+
+.custom-title div img {
+  width:100%;
+}
+
+.custom-text {
+  padding-left:40px;
+  line-height: 35px;
+}
+
+.custom-text span {
+  background:#444;
+  color:#fff;
+  padding:5px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.box-container {
+  margin-top:15px !important;
+  margin-bottom:25px;
+}
+
+.title.hp {
+  background: #B12A14;
+  color: #fff;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+}
+
+.title.dice {
+  background: #444;
+  color: #fff;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+}
+
+.skill-container {
+  width:100%;
+  height:130px;
+  border:solid 5px #aaa;
+  -moz-border-radius:10px 10px 40px 40px;
+  -webkit-border-radius:10px 10px 40px 40px;
+  border-radius:10px 10px 40px 40px;
+}
+
+.skill-container.edit {
+  height:215px;
+}
+
+.skill-title {
+  width:100%;
+  background:#555;
+  padding:5px;
+  color:#fff;
+  text-align:center;
+  font-size:16px;
+  -moz-border-radius:4px 4px 0 0;
+  -webkit-border-radius:4px 4px 0 0;
+  border-radius:4px 4px 0 0;
+}
+
+.proficiency-inspirantion div {
+  padding:10px 5px;
+  float:left;
+  margin:0 auto;
+}
+
+.proficiency-inspirantion div.left {
+  border-top:solid 2px #444;
+  border-bottom:solid 2px #444;
+  border-left:solid 2px #444;
+  -moz-border-radius:15px 0 0 15px;
+  -webkit-border-radius:15px 0 0 15px;
+  border-radius:15px 0 0 15px;
+  width:80%;
+}
+
+.proficiency-inspirantion div.right {
+  border:solid 2px #444;
+  -moz-border-radius: 0 15px 15px 0;
+  -webkit-border-radius: 0 15px 15px 0;
+  border-radius: 0 15px 15px 0;
+  width:20%;
+}
+
+.equipment-table .col {
+  border-bottom:solid 2px #444;
+}
+
+
+.button-positive {
+  background:#50A385 !important;
+  color: #fff;
+}
+
+.label {
+  padding:3px;
+  font-size:14px;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+}
+
+.label.dark {
+  background:#444;
+  color:#fff;
+}
+
+.label.positive {
+  background:#50A385;
+  color:#fff;
+}
+
+.label.default {
+  background:#f0f0f0;
+}
+
+.label.negative {
+  background:#c00;
+  color:#fff;
+}
+
+.item p {
+  color:#222;
+}
+
+.bar-balanced {
+  background:#50A385 !important;
+}

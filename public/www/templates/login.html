@@ -1,0 +1,38 @@
+<ion-view view-title="Login">
+  <ion-content>
+
+    <img src="img/header3.jpg" class="full-image" alt="">
+
+    <br>
+
+    <div class="padding" ng-if="error_message">
+      <div class="card">
+        <div class="item item-text-wrap" style="background:#cc0000;color:#fff;">
+          {{error_message}}
+        </div>
+      </div>
+    </div>
+
+    <form ng-submit="login()">
+
+      <div class="list list-inset">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="Email" ng-model="user.email">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="Password" ng-model="user.password">
+        </label>
+      </div>
+
+      <div class="padding text-center">
+        <button class="button button-block button-positive" type="submit">Login</button>
+        <p>Or</p>
+        <button class="button button-dark button-block" ui-sref="signup">Sign Up</button>
+      </div>
+
+    </form>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,24 @@
+
+<div class="text-center" id="loader" style="margin:50px 0;">
+  <ion-spinner icon="spiral"></ion-spinner>
+</div>
+
+<div class="card" ui-sref="character({characterId: character._id})" ng-repeat="character in characters | orderBy:'name'">
+  <div class="item item-text-wrap">
+    <h2 class="title custom-title">
+      <div>
+        <img src="img/icon.jpg" alt="">
+      </div>
+      {{character.name}}
+    </h2>
+    <br>
+    <h2 class="custom-text">
+      <span>{{character.race}}</span>
+      &nbsp;&nbsp;&nbsp;
+      <span>{{character.class}}</span>
+      &nbsp;&nbsp;&nbsp;
+      <span>LVL {{character.level}}</span>
+    </h2>
+
+  </div>
+</div>

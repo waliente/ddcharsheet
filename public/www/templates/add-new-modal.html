@@ -1,0 +1,31 @@
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header bar-balanced">
+    <h1 class="title">Add new character</h1>
+    <button class="button button-clear button-primary" ng-click="modal.hide()">Back</button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list">
+      <form ng-submit="createCharacter(character)">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Character Name *</span>
+          <input ng-model="character.name" type="text" placeholder="Character Name" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Race *</span>
+          <input ng-model="character.race" type="text" placeholder="Race" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Class *</span>
+          <input ng-model="character.class" type="text" placeholder="Class" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Level *</span>
+          <input ng-model="character.level" type="number" placeholder="Level" required>
+        </label>
+        <br>
+        <p>* All fields are required</p>
+        <button class="button button-full button-positive" type="submit">Create</button>
+      </form>
+    </div>
+  </ion-content>
+</ion-modal-view>
