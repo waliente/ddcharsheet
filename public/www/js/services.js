@@ -4,7 +4,7 @@ angular.module('app.services', [])
 
     return {
 
-      API_URL: "/api"
+      API_URL: "https://ddcharsheet.herokuapp.com/api"
 
     }
 

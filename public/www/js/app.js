@@ -10,7 +10,7 @@ angular.module('dd-charsheet', [
 
 ])
 
-.run(function($ionicPlatform, $rootScope, $localStorage, $state) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,11 +23,12 @@ angular.module('dd-charsheet', [
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
   });
 
 })
 
-.config(function($stateProvider, $urlRouterProvider, $localStorageProvider) {
+.config(function($stateProvider, $urlRouterProvider, $localStorageProvider, $httpProvider) {
 
   $stateProvider
     .state('login', {
@@ -58,6 +59,27 @@ angular.module('dd-charsheet', [
 
   // SET PREFIX
   $localStorageProvider.setPrefix('ddcharsheet_');
+
+  /*
+   * Intercept POST, PUT requests and convert them to standard form encoding
+   */
+  $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
+  $httpProvider.defaults.headers.put["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
+
+  /*
+   * Transform data from json to HTTP request params string
+   */
+  $httpProvider.defaults.transformRequest = function (data) {
+    if (data === undefined)
+      return data;
+    return $.param(data);
+  };
+
+  /*
+   * CORS Configuration
+   */
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 })
 

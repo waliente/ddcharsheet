@@ -8,9 +8,9 @@ angular.module('dd-charsheet')
     }
   })
 
-  .controller("CharactersList", function ($scope, $http, $rootScope) {
+  .controller("CharactersList", function ($scope, $http, $rootScope, $appConfig) {
 
-    $http.get("/api/users/" + $rootScope.user.id + "/characters")
+    $http.get($appConfig.API_URL + "/users/" + $rootScope.user.id + "/characters")
       .success(function (data) {
         console.log(data);
         $scope.characters = data;

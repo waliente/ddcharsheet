@@ -92,7 +92,7 @@ angular.module('app.controllers', [])
 
   // DASHBOARD
 
-  .controller('DashboardCtrl', function ($scope, $ionicModal, $state, $http, $window, $rootScope, $localStorage, $window) {
+  .controller('DashboardCtrl', function ($scope, $ionicModal, $state, $http, $window, $rootScope, $localStorage, $appConfig) {
 
     // MODAL
     $ionicModal.fromTemplateUrl('templates/add-new-modal.html', {
@@ -123,7 +123,7 @@ angular.module('app.controllers', [])
     // CREATE NEW CHARACTER
     $scope.createCharacter = function (character) {
       $scope.character = character;
-      $http.post("/api/users/" + $rootScope.user.id + "/characters/", character)
+      $http.post($appConfig.API_URL + "/users/" + $rootScope.user.id + "/characters/", character)
         .success(function (data) {
           console.log("Saving...");
           $scope.modal.hide();
@@ -149,11 +149,11 @@ angular.module('app.controllers', [])
 
   // CHARACTER DETAIL
 
-  .controller('CharacterCtrl', function ($scope, $http, $state, $stateParams, $ionicLoading, $rootScope) {
+  .controller('CharacterCtrl', function ($scope, $http, $state, $stateParams, $ionicLoading, $rootScope, $appConfig) {
 
     $ionicLoading.show();
 
-    $http.get("/api/users/" + $rootScope.user.id + "/characters/" + $stateParams.characterId)
+    $http.get($appConfig.API_URL + "/users/" + $rootScope.user.id + "/characters/" + $stateParams.characterId)
       .success(function (data) {
 
         $ionicLoading.hide();
@@ -349,7 +349,7 @@ angular.module('app.controllers', [])
 
     $scope.saveEdit = function () {
 
-      $http.put("/api/users/" + $rootScope.user.id + "/characters/" + $stateParams.characterId, $scope.character)
+      $http.put($appConfig.API_URL + "/users/" + $rootScope.user.id + "/characters/" + $stateParams.characterId, $scope.character)
         .success(function () {
           console.log("saved");
           $state.reload();
