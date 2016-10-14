@@ -1,6 +1,7 @@
 ## General
 node_modules/
 public/www/node_modules/
+npm-debug.log
 
 
 #################
