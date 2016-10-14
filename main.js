@@ -18,7 +18,13 @@ app.use(function(req, res, next) {
 // Set static directory before defining routes
 app.use(express.static(path.join(__dirname, './public/www')));
 app.use('/node_modules', express.static(__dirname + './node_modules'));
-app.use('/fonts', express.static(__dirname + './fonts'));
+
+// CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
 
 // Enable parsing of posted forms
 app.use(bodyParser.urlencoded({ extended: false }));
