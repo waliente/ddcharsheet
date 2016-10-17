@@ -30,6 +30,28 @@ angular.module('dd-charsheet', [
 
 .config(function($stateProvider, $urlRouterProvider, $localStorageProvider, $httpProvider) {
 
+  /*
+   * Intercept POST, PUT requests and convert them to standard form encoding
+   */
+  $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
+  $httpProvider.defaults.headers.put["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
+
+  /*
+   * Transform data from json to HTTP request params string
+   */
+  $httpProvider.defaults.transformRequest = function (data) {
+    if (data === undefined)
+      return data;
+    return $.param(data);
+  };
+
+  /*
+   * CORS Configuration
+   */
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+
   $stateProvider
     .state('login', {
       url: '/login',
@@ -60,32 +82,9 @@ angular.module('dd-charsheet', [
   // SET PREFIX
   $localStorageProvider.setPrefix('ddcharsheet_');
 
-  /*
-   * Intercept POST, PUT requests and convert them to standard form encoding
-   */
-  $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
-  $httpProvider.defaults.headers.put["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
-
-  /*
-   * Transform data from json to HTTP request params string
-   */
-  $httpProvider.defaults.transformRequest = function (data) {
-    if (data === undefined)
-      return data;
-    return $.param(data);
-  };
-
-  /*
-   * CORS Configuration
-   */
-  $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
 })
 
 .controller('AppCtrl', function ($rootScope) {
-
-  console.log($rootScope.user);
 
 })
 
