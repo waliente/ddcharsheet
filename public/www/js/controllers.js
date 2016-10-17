@@ -39,7 +39,7 @@ angular.module('app.controllers', [])
 
               $localStorage.set("user", result.data);
               $ionicLoading.hide();
-              $window.location.href = "index.html"
+              $window.location.href = "/"
 
             }
 
@@ -140,7 +140,7 @@ angular.module('app.controllers', [])
 
       $localStorage.clear();
       $rootScope.user = null;
-      $window.location.href = "index.html"
+      $window.location.href = "/"
 
     };
 

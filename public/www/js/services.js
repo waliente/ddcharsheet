@@ -12,7 +12,7 @@ angular.module('app.services', [])
 
   })
 
-  .factory('AuthInterceptor', function ($q, $location, $window, AuthFactory) {
+  .factory('AuthInterceptor', function ($q, $location, $window, AuthFactory, $rootScope) {
 
     return {
       request: request,
@@ -22,14 +22,14 @@ angular.module('app.services', [])
 
     function request(config) {
       config.headers = config.headers || {};
-      if ($window.sessionStorage.token) {
-        config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+      if ($rootScope.user.token) {
+        config.headers.Authorization = 'Bearer ' + $rootScope.user.token;
       }
       return config;
     }
 
     function response(response) {
-      if (response.status === 200 && $window.sessionStorage.token && !AuthFactory.isLoggedIn) {
+      if (response.status === 200 && $rootScope.user.token && !AuthFactory.isLoggedIn) {
         AuthFactory.isLoggedIn = true;
       }
       if (response.status === 401) {
@@ -40,7 +40,7 @@ angular.module('app.services', [])
 
     function responseError(rejection) {
       if (rejection.status === 401 || rejection.status === 403) {
-        delete $window.sessionStorage.token;
+        delete $rootScope.user.token;
         AuthFactory.isLoggedIn = false;
         $location.path('/');
       }
