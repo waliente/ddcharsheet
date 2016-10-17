@@ -18,12 +18,12 @@ router
 router
     .route('/users/:userId/characters')
     .get(ctrlCharacters.CharactersGetAll)
-    .post(ctrlCharacters.CharactersAddOne);
+    .post(ctrlUsers.authenticate, ctrlCharacters.CharactersAddOne);
 
 router
     .route('/users/:userId/characters/:characterId')
     .get(ctrlCharacters.CharactersGetOne)
-    .put(ctrlCharacters.CharactersUpdateOne);
+    .put(ctrlUsers.authenticate, ctrlCharacters.CharactersUpdateOne);
 
 
 // Authentication
