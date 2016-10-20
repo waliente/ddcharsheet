@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.blank622644" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>DeD Charsheet 5th Edition</name>
+<widget id="net.goonagency.ddcharsheet" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>D&amp;D Charsheet 5th Edition</name>
   <description>
     Manage your 5th edition Dungeons and Dragons Character Sheet on your smartphone.
     </description>
-  <author email="marco.chierchia@goonagency.net" href="http://goonagency.net/">
-      Goonagency
+  <author email="app@goonagency.net" href="http://goonagency.net/">
+      goonagency
     </author>
   <content src="index.html"/>
   <access origin="*"/>

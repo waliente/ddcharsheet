@@ -24,6 +24,28 @@ angular.module('dd-charsheet', [
       StatusBar.styleDefault();
     }
 
+    if(window.plugins && window.plugins.AdMob) {
+      var admob_key = device.platform == "Android" ? "ca-app-pub-2738239061730993/3706064866" : "";
+      var admob = window.plugins.AdMob;
+      admob.createBannerView(
+        {
+          'publisherId': admob_key,
+          'adSize': admob.AD_SIZE.BANNER,
+          'bannerAtTop': false
+        },
+        function() {
+          admob.requestAd(
+            { 'isTesting': false },
+            function() {
+              admob.showAd(true);
+            },
+            function() { console.log('failed to request ad'); }
+          );
+        },
+        function() { console.log('failed to create banner view'); }
+      );
+    }
+
   });
 
 })
